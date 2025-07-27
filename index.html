@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧家庭電器儀表板</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/themes/dark-unica.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 左側導航欄 -->
+        <nav class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">🏠</div>
+                <span class="logo-text">智慧家庭</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item active">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">儀表板</span>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">💡</span>
+                    <span class="nav-text">照明控制</span>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">🌡️</span>
+                    <span class="nav-text">溫控系統</span>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">🔒</span>
+                    <span class="nav-text">安全系統</span>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">⚡</span>
+                    <span class="nav-text">用電管理</span>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">📱</span>
+                    <span class="nav-text">裝置管理</span>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">設定</span>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- 主要內容區域 -->
+        <main class="main-content">
+            <!-- 標題欄 -->
+            <header class="header">
+                <div class="header-content">
+                    <h1>用電量</h1>
+                    <div class="header-controls">
+                        <div class="theme-toggle">
+                            <button id="themeToggle" class="theme-btn">
+                                <span class="theme-icon">🌙</span>
+                            </button>
+                        </div>
+                        <div class="date-selector">
+                            <select id="periodSelector">
+                                <option value="week">本週</option>
+                                <option value="month">本月</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 總用電量顯示 -->
+            <section class="total-usage">
+                <div class="usage-amount">
+                    <span class="amount" id="totalUsage">2,847</span>
+                    <span class="unit">kWh</span>
+                </div>
+                <div class="usage-comparison">
+                    <span class="comparison-text">vs 上期 <span id="lastPeriodUsage">2,234</span> kWh</span>
+                    <span class="comparison-icon">📈</span>
+                </div>
+                <div class="usage-indicator">
+                    <div class="indicator-dots">
+                        <span class="dot current-period"></span>
+                        <span class="dot-label">本期</span>
+                        <span class="dot last-period"></span>
+                        <span class="dot-label">上期</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 主要內容區域 -->
+            <div class="content-grid">
+                <!-- 用電量圖表 -->
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h2>用電量趨勢</h2>
+                        <div class="chart-period-toggle">
+                            <button class="period-btn active" data-period="week">本週</button>
+                            <button class="period-btn" data-period="month">本月</button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div id="usageChart" class="chart-container"></div>
+                    </div>
+                </div>
+
+                <!-- 智慧家電控制 -->
+                <div class="card devices-card">
+                    <div class="card-header">
+                        <h2>智慧家電</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="devices-grid">
+                            <div class="device-item" data-device="aircon">
+                                <div class="device-icon">❄️</div>
+                                <div class="device-info">
+                                    <span class="device-name">冷氣</span>
+                                    <span class="device-status">開啟</span>
+                                </div>
+                                <div class="device-toggle">
+                                    <input type="checkbox" id="aircon-toggle" checked>
+                                    <label for="aircon-toggle" class="toggle-switch"></label>
+                                </div>
+                            </div>
+
+                            <div class="device-item" data-device="light">
+                                <div class="device-icon">💡</div>
+                                <div class="device-info">
+                                    <span class="device-name">照明</span>
+                                    <span class="device-status">開啟</span>
+                                </div>
+                                <div class="device-toggle">
+                                    <input type="checkbox" id="light-toggle" checked>
+                                    <label for="light-toggle" class="toggle-switch"></label>
+                                </div>
+                            </div>
+
+                            <div class="device-item" data-device="tv">
+                                <div class="device-icon">📺</div>
+                                <div class="device-info">
+                                    <span class="device-name">電視</span>
+                                    <span class="device-status">關閉</span>
+                                </div>
+                                <div class="device-toggle">
+                                    <input type="checkbox" id="tv-toggle">
+                                    <label for="tv-toggle" class="toggle-switch"></label>
+                                </div>
+                            </div>
+
+                            <div class="device-item" data-device="fridge">
+                                <div class="device-icon">🧊</div>
+                                <div class="device-info">
+                                    <span class="device-name">冰箱</span>
+                                    <span class="device-status">開啟</span>
+                                </div>
+                                <div class="device-toggle">
+                                    <input type="checkbox" id="fridge-toggle" checked disabled>
+                                    <label for="fridge-toggle" class="toggle-switch"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最高用電時段 -->
+                <div class="card peak-hours-card">
+                    <div class="card-header">
+                        <h2>最高用電時段</h2>
+                        <span class="card-subtitle">今日</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="peak-hour-chart" id="peakHourChart"></div>
+                        <div class="peak-hour-info">
+                            <div class="peak-time">
+                                <span class="time-label">尖峰時段</span>
+                                <span class="time-value">14:00 - 16:00</span>
+                            </div>
+                            <div class="peak-usage">
+                                <span class="usage-label">最高用電量</span>
+                                <span class="usage-value">3.2 kW</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最耗電家電 -->
+                <div class="card top-devices-card">
+                    <div class="card-header">
+                        <h2>最耗電家電</h2>
+                        <span class="card-subtitle">今日消耗</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="device-consumption-list">
+                            <div class="consumption-item">
+                                <div class="consumption-device">
+                                    <span class="device-icon">❄️</span>
+                                    <span class="device-name">冷氣</span>
+                                </div>
+                                <div class="consumption-bar">
+                                    <div class="bar-fill" style="width: 85%"></div>
+                                </div>
+                                <span class="consumption-value">12.4 kWh</span>
+                            </div>
+
+                            <div class="consumption-item">
+                                <div class="consumption-device">
+                                    <span class="device-icon">🧊</span>
+                                    <span class="device-name">冰箱</span>
+                                </div>
+                                <div class="consumption-bar">
+                                    <div class="bar-fill" style="width: 45%"></div>
+                                </div>
+                                <span class="consumption-value">6.8 kWh</span>
+                            </div>
+
+                            <div class="consumption-item">
+                                <div class="consumption-device">
+                                    <span class="device-icon">💡</span>
+                                    <span class="device-name">照明</span>
+                                </div>
+                                <div class="consumption-bar">
+                                    <div class="bar-fill" style="width: 25%"></div>
+                                </div>
+                                <span class="consumption-value">3.2 kWh</span>
+                            </div>
+
+                            <div class="consumption-item">
+                                <div class="consumption-device">
+                                    <span class="device-icon">📺</span>
+                                    <span class="device-name">電視</span>
+                                </div>
+                                <div class="consumption-bar">
+                                    <div class="bar-fill" style="width: 15%"></div>
+                                </div>
+                                <span class="consumption-value">1.8 kWh</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 底部品牌信息 -->
+            <footer class="dashboard-footer">
+                <div class="footer-brand">
+                    <span class="brand-icon">⚡</span>
+                    <span class="brand-name">SmartHome</span>
+                </div>
+                <div class="footer-info">
+                    <span class="info-text">智慧家庭管理系統</span>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

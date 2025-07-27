@@ -1,0 +1,661 @@
+/* CSS 變量 - 深色主題 */
+:root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #888888;
+    --border-color: #2a2a2a;
+    --border-hover: #3a3a3a;
+    --accent-color: #4a9eff;
+    --accent-hover: #66b3ff;
+    --success-color: #4ade80;
+    --warning-color: #fbbf24;
+    --error-color: #f87171;
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* 淺色主題 */
+[data-theme="light"] {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #e2e8f0;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --border-hover: #cbd5e1;
+    --accent-color: #3b82f6;
+    --accent-hover: #2563eb;
+    --success-color: #059669;
+    --warning-color: #d97706;
+    --error-color: #dc2626;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* 重置和基礎樣式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 主容器 */
+.container {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+/* 左側導航欄 */
+.sidebar {
+    width: 240px;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    padding: 24px 0;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 0 24px 32px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 24px;
+}
+
+.logo-icon {
+    font-size: 24px;
+    margin-right: 12px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.nav-item:hover {
+    background: var(--bg-tertiary);
+    border-left-color: var(--text-muted);
+}
+
+.nav-item.active {
+    background: var(--bg-tertiary);
+    border-left-color: var(--accent-color);
+}
+
+.nav-icon {
+    font-size: 16px;
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+}
+
+.nav-text {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.nav-item.active .nav-text {
+    color: var(--text-primary);
+}
+
+/* 主要內容區域 */
+.main-content {
+    flex: 1;
+    margin-left: 240px;
+    padding: 24px;
+    background: var(--bg-primary);
+    min-height: 100vh;
+    transition: background-color 0.3s ease;
+}
+
+/* 標題欄 */
+.header {
+    margin-bottom: 24px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* 主題切換按鈕 */
+.theme-toggle {
+    position: relative;
+}
+
+.theme-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theme-btn:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-hover);
+}
+
+.theme-icon {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.theme-btn:hover .theme-icon {
+    transform: rotate(15deg);
+}
+
+.date-selector select {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.date-selector select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* 總用電量顯示 */
+.total-usage {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.usage-amount {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.amount {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.unit {
+    font-size: 20px;
+    color: var(--text-muted);
+}
+
+.usage-comparison {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.comparison-icon {
+    font-size: 16px;
+}
+
+.usage-indicator {
+    display: flex;
+    align-items: center;
+}
+
+.indicator-dots {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.dot.current-period {
+    background: var(--accent-color);
+}
+
+.dot.last-period {
+    background: var(--text-muted);
+}
+
+.dot-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-right: 12px;
+}
+
+/* 網格布局 */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 24px;
+}
+
+.chart-card {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.devices-card {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.peak-hours-card {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.top-devices-card {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/* 卡片樣式 */
+.card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.card-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--bg-tertiary);
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* 圖表切換按鈕 */
+.chart-period-toggle {
+    display: flex;
+    gap: 8px;
+}
+
+.period-btn {
+    background: var(--bg-tertiary);
+    border: none;
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.period-btn.active,
+.period-btn:hover {
+    background: var(--accent-color);
+    color: var(--text-primary);
+}
+
+/* 圖表容器 */
+.chart-container {
+    height: 300px;
+    width: 100%;
+}
+
+/* 設備控制區域 */
+.devices-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.device-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.device-item:hover {
+    background: var(--border-hover);
+}
+
+.device-icon {
+    font-size: 24px;
+    margin-right: 12px;
+}
+
+.device-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.device-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.device-status {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* 開關樣式 */
+.device-toggle {
+    position: relative;
+}
+
+.device-toggle input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    background: var(--bg-tertiary);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-switch:before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    top: 3px;
+    left: 3px;
+    background: var(--text-primary);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+input[type="checkbox"]:checked + .toggle-switch {
+    background: var(--accent-color);
+}
+
+input[type="checkbox"]:checked + .toggle-switch:before {
+    transform: translateX(20px);
+}
+
+input[type="checkbox"]:disabled + .toggle-switch {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 最高用電時段 */
+.peak-hour-chart {
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.peak-hour-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.peak-time,
+.peak-usage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.time-label,
+.usage-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.time-value,
+.usage-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* 最耗電家電列表 */
+.device-consumption-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.consumption-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.consumption-device {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 80px;
+}
+
+.consumption-device .device-icon {
+    font-size: 16px;
+}
+
+.consumption-device .device-name {
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.consumption-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.consumption-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    min-width: 60px;
+    text-align: right;
+}
+
+/* 底部品牌信息 */
+.dashboard-footer {
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand-icon {
+    font-size: 20px;
+}
+
+.brand-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.footer-info {
+    display: flex;
+    align-items: center;
+}
+
+.info-text {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* 響應式設計 */
+@media (max-width: 1440px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+    }
+    
+    .chart-card {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .devices-card {
+        grid-column: 1;
+        grid-row: 2;
+    }
+    
+    .peak-hours-card {
+        grid-column: 1;
+        grid-row: 3;
+    }
+    
+    .top-devices-card {
+        grid-column: 1;
+        grid-row: 4;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+    
+    .main-content {
+        margin-left: 200px;
+        padding: 16px;
+    }
+    
+    .header h1 {
+        font-size: 24px;
+    }
+    
+    .amount {
+        font-size: 36px;
+    }
+    
+    .card {
+        padding: 16px;
+    }
+}
+
+/* 滾動條樣式 */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-tertiary);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border-hover);
+} 
